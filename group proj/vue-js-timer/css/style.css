@@ -1,0 +1,48 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+#app {
+  text-align: center;
+}
+
+body {
+  font-family: sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+#app {
+  padding: 10px;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+input[type=number] {
+  padding: 10px;
+  font-size: inherit;
+  width: 100%;
+}
+
+button {
+  padding: 10px;
+}
+
+[v-cloak] {
+  opacity: 0;
+}
+
+label {
+  width: 20%;
+  padding: 10px 0;
+  display: inline-block;
+}
+
+.timer {
+  font-size: 2em;
+  margin: 20px;
+}

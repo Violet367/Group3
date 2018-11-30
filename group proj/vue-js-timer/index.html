@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vue.js - Timer</title>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+   <div id="app" v-cloak>
+	<h1>Timer</h1>
+	<timer-setup v-if="!time" @set-time="setTime"></timer-setup>
+	 <div v-else>
+		 <timer :time="prettyTime"></timer>
+		 <div>
+			  <button v-if="!isRunning" @click="start">Start</button>
+			  <button v-if="isRunning" @click="stop">Stop</button>
+			  <button @click="reset">Reset</button>
+		 </div>
+	</div>       
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

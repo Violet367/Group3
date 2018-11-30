@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="notepad.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+
+<div id="Notepad">
+
+<ol id="myTabs">
+  <button class="tablink" onclick="openNote('INST201', this, 'orange')" id="defaultOpen">INST201</button>
+  <button class="tablink" onclick="openNote('INST377', this, 'orange')">INST377</button>
+  <button class="tablink" onclick="openNote('INST466', this, 'orange')">INST466</button>
+</ol>
+
+  <div id="myDIV" class="tablink">
+    <input type="text" id="myInput" placeholder="New Tab...">
+    <span onclick="newElement()" class="addBtn">Add</span>
+  </div>
+
+  <div id="INST201" class="tabcontent">
+    <textarea class="notes" placeholder="Start typing...">
+    </textarea>
+  </div>
+
+  <div id="INST377" class="tabcontent">
+    <textarea class="notes" placeholder="Start typing...">
+    </textarea>
+  </div>
+
+  <div id="INST466" class="tabcontent">
+    <textarea class="notes" placeholder="Start typing...">
+    </textarea>
+  </div>
+
+</div>
+
+</body>
+
+<script>
+
+function openNote(noteName,elmnt,color) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+    }
+    document.getElementById(noteName).style.display = "block";
+    elmnt.style.backgroundColor = color;
+}
+document.getElementById("defaultOpen").click();
+
+var myNodelist = document.getElementsByTagName("button");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+function newElement() {
+  var button = document.createElement("button");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  button.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myTabs").appendChild(button);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  button.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+
+</script>
+
+</html>

@@ -18,12 +18,13 @@
       // If result matched $myemail and $mypassword, table row must be 1 row
 
       if($count == 1) {
-         session_register("myemail");
+
          $_SESSION['login_user'] = $myemail;
 
          header("location: notepad.html");
       }else {
          $error = "Your Login Name or Password is invalid";
+         echo $error;
       }
    }
 ?>
@@ -65,7 +66,7 @@
 
     <div id="logIn" class="modal">
 
-      <form action="logIn.php" method="post" class="modal-content animate">
+      <form method="post" class="modal-content animate">
         <div class="imgcontainer">
           <span onclick="document.getElementById('logIn').style.display='none'" class="close" title="Close Modal">&times;</span>
         </div>
@@ -93,7 +94,7 @@
 
   <div id="id01" class="modal">
 
-    <form name = "SignUp" action="signUp.php" method="post" class="modal-content animate" onsubmit="return validateForm();" >
+    <form name = "SignUp" action = "signUp.php" method="post" class="modal-content animate" onsubmit="return validateForm();" >
       <div class="imgcontainer">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       </div>

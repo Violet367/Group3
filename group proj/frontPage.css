@@ -29,14 +29,14 @@ input[type=text], input[type=password] {
 .log:hover {background-color: white}
 
 .log:active {
-  background-color: #3e8e41;
+  background-color: white;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
 
 /* Set a style for all buttons */
 button {
-    background-color:#D61A46/* #4CAF50*/;
+    background-color: #D61A46;
     color: #000000;
     padding: 14px 20px;
     margin: 8px 0;

@@ -1,18 +1,7 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "mysql";
-$database = "StudyBuddy";
+include 'config.php';
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully";
 
 $email = $_POST["email"];
 $password1 = $_POST["psw"];
@@ -26,4 +15,5 @@ if(mysqli_query($conn, $sql)){
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 }
 
+header("location: notepad.html");
 ?>

@@ -1,8 +1,5 @@
 <?php
 
-  $email = $_POST["email"];
-  $password1 = $_POST["psw"];
-
 $servername = "localhost";
 $username = "root";
 $password = "mysql";
@@ -15,8 +12,10 @@ $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
 echo "Connected successfully";
+
+$email = $_POST["email"];
+$password1 = $_POST["psw"];
 
 $sql = "INSERT INTO Accounts (email, password) VALUES
 ('$email', '$password1')";
@@ -27,4 +26,4 @@ if(mysqli_query($conn, $sql)){
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 }
 
- ?>
+?>

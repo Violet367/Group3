@@ -1,14 +1,6 @@
 var timerSetup = {
 	template: '\n\t<form>\n\t\t <label for="min">Minutes<br />\n\t\t <input type="number" v-model="minutes" name="time_m" id="min" min="0" max="59">\n\t\t </label>\n\t\t <label for="sec">Secondes<br />\n\t\t\t  <input type="number" v-model="secondes" name="time_s" id="sec" max="59" min="0">\n\t\t </label>\n\t\t <button type="button" @click="sendTime">Set time</button>\n\t</form>',
 
-
-
-
-
-
-
-
-
 	data: function data() {
 		return {
 			minutes: 0,

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Study Buddy </title>
+    <link rel="stylesheet" href="studybuddy.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script>
+  </head>
+  <body>
+    <div class="container" id="parent">
+
+    <div id="right" class="np"> <!--right side of page, notepad-->
+        <ol id="myTabs">
+          <button class="tablink" onclick="openNote('INST201', this, '#555')" id="defaultOpen">INST201</button>
+          <button class="tablink" onclick="openNote('INST377', this, '#555')">INST377</button>
+          <button class="tablink" onclick="openNote('INST466', this, '#555')">INST466</button>
+        </ol>
+        <div id="tabDIV" class="tablink">
+          <input type="text" id="theInput" placeholder="New Tab...">
+          <span onclick="newTabElement()" class="add">Add</span>
+        </div>
+        <div id="INST201" class="tabcontent">
+            <textarea class="notes" placeholder="Start typing..."></textarea>
+        </div>
+        <div id="INST377" class="tabcontent">
+          <textarea class="notes" placeholder="Start typing..."></textarea>
+        </div>
+        <div id="INST466" class="tabcontent">
+          <textarea class="notes" placeholder="Start typing..."></textarea>
+        </div>
+
+      <script>
+      function openNote(noteName,elmnt,color) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+              tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablink");
+          for (i = 0; i < tablinks.length; i++) {
+              tablinks[i].style.backgroundColor = "";
+          }
+          document.getElementById(noteName).style.display = "block";
+          elmnt.style.backgroundColor = color;
+      }
+      document.getElementById("defaultOpen").click();
+
+      var myNodelist = document.getElementsByTagName("button");
+      var i;
+      for (i = 0; i < myNodelist.length; i++) {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
+      }
+
+      var close = document.getElementsByClassName("close");
+      var i;
+      for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+          var div = this.parentElement;
+          div.style.display = "none";
+        }
+      }
+
+      // Create a new tab when clicking on the "Add" button
+      function newTabElement() {
+        var button = document.createElement("button");
+        var inputValue = document.getElementById("theInput").value;
+        var t = document.createTextNode(inputValue);
+        button.appendChild(t);
+        if (inputValue === "") {
+          alert("You must write something!");
+        } else {
+          document.getElementById("myTabs").appendChild(button);
+        }
+        document.getElementById("theInput").value = "";
+
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        button.appendChild(span);
+
+        for (i = 0; i < close.length; i++) {
+          close[i].onclick = function() {
+            var div = this.parentElement;
+            div.style.display = "none";
+          }
+        }
+      }
+      </script>
+  </div><!--right side of page, notepad-->
+
+    <div id="upperleft" class="timer"><!--timer-->
+    <div id="app" v-cloak>
+    <h1>Timer</h1>
+    <timer-setup v-if="!time" @set-time="setTime"></timer-setup>
+    <div v-else>
+      <timer :time="prettyTime"></timer>
+    <div>
+      <button v-if="!isRunning" @click="start">Start</button>
+      <button v-if="isRunning" @click="stop">Stop</button>
+      <button @click="reset">Reset</button>
+   </div>
+   </div>
+  </div>
+  <script>
+  var timerSetup = {
+    template: '\n\t<form>\n\t\t <label for="min">Minutes<br />\n\t\t <input type="number" v-model="minutes" name="time_m" id="min" min="0" max="59">\n\t\t </label>\n\t\t <label for="sec">Seconds<br />\n\t\t\t  <input type="number" v-model="secondes" name="time_s" id="sec" max="59" min="0">\n\t\t </label>\n\t\t <button type="button" @click="sendTime">Set time</button>\n\t</form>',
+    data: function data() {
+      return {
+        minutes: 0,
+        secondes: 0
+      };
+    },
+    methods: {
+      sendTime: function sendTime() {
+        this.$emit('set-time', { minutes: this.minutes, secondes: this.secondes });
+      } } };
+  var Timer = {
+    template: '\n\t\t <div class="timer">{{ time | prettify }}</div>\n\t',
+    props: ['time'],
+    filters: {
+      prettify: function prettify(value) {
+        var data = value.split(':');
+        var minutes = data[0];
+        var secondes = data[1];
+        if (minutes < 10) {
+          minutes = "0" + minutes;
+        }
+        if (secondes < 10) {
+          secondes = "0" + secondes;
+        }
+        return minutes + ":" + secondes;
+      } } };
+  var app = new Vue({
+    el: "#app",
+    components: {
+      'timer-setup': timerSetup,
+      'timer': Timer },
+    data: {
+      isRunning: false,
+      minutes: 0,
+      secondes: 0,
+      time: 0,
+      timer: null,
+      sound: new Audio("http://s1download-universal-soundbank.com/wav/nudge.wav") },
+    computed: {
+      prettyTime: function prettyTime() {
+        var time = this.time / 60;
+        var minutes = parseInt(time);
+        var secondes = Math.round((time - minutes) * 60);
+        return minutes + ":" + secondes;
+      } },
+    methods: {
+      start: function start() {var _this = this;
+        this.isRunning = true;
+        if (!this.timer) {
+          this.timer = setInterval(function () {
+            if (_this.time > 0) {
+              _this.time--;
+            } else {
+              clearInterval(_this.timer);
+              _this.sound.play();
+              _this.reset();
+            }
+          }, 1000);
+        }
+      },
+      stop: function stop() {
+        this.isRunning = false;
+        clearInterval(this.timer);
+        this.timer = null;
+      },
+      reset: function reset() {
+        this.stop();
+        this.time = 0;
+        this.secondes = 0;
+        this.minutes = 0;
+      },
+      setTime: function setTime(payload) {
+        this.time = payload.minutes * 60 + payload.secondes;
+      } } });
+    </script>
+  </div><!--timer-->
+
+  <div id="lower left" class="tdl" > <!--Todo list-->
+    <div id="myDIV" class="header">
+      <h2>To Do List</h2>
+      <input type="text" id="Input" placeholder="Enter a task...">
+      <span onclick="newListElement()" class="addBtn">Add</span>
+    </div>
+    <ul id="myUL"></ul>
+
+    <script>
+    // Create a "close" button and append it to each list item
+    var myNodelist = document.getElementsByTagName("LI");
+    var i;
+    for (i = 0; i < myNodelist.length; i++) {
+      var span = document.createElement("SPAN");
+      var txt = document.createTextNode("\u00D7");
+      span.className = "close";
+      span.appendChild(txt);
+      myNodelist[i].appendChild(span);
+    }
+
+    // Click on a close button to hide the current list item
+    var close = document.getElementsByClassName("close");
+    var i;
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function() {
+        var div = this.parentElement;
+        div.style.display = "none";
+      }
+    }
+
+    // Add a "checked" symbol when clicking on a list item
+    var list = document.querySelector('ul');
+    list.addEventListener('click', function(ev) {
+      if (ev.target.tagName === 'LI') {
+        ev.target.classList.toggle('checked');
+      }
+    }, false);
+
+    // Create a new list item when clicking on the "Add" button
+    function newListElement() {
+      var li = document.createElement("li");
+      var inputValue = document.getElementById("Input").value;
+      var t = document.createTextNode(inputValue);
+      li.appendChild(t);
+      if (inputValue === "") {
+        alert("You must write something!");
+      } else {
+        document.getElementById("myUL").appendChild(li);
+      }
+      document.getElementById("Input").value = "";
+
+      var span = document.createElement("SPAN");
+      var txt = document.createTextNode("\u00D7");
+      span.className = "close";
+      span.appendChild(txt);
+      li.appendChild(span);
+
+      for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+          var div = this.parentElement;
+          div.style.display = "none";
+        }
+      }
+    }
+    </script>
+    </div><!--Todo list-->
+  </div><!--parent-->
+    </body>
+</html>

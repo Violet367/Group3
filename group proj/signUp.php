@@ -14,5 +14,5 @@ if(mysqli_query($conn, $sql)){
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 }
 
-header("location: frontpage.html");
+header("location: frontpage.php");
 ?>

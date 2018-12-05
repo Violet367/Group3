@@ -2,7 +2,6 @@
 
 include 'config.php';
 
-
 $email = $_POST["email"];
 $password1 = $_POST["psw"];
 

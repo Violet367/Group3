@@ -95,7 +95,7 @@
 
     <div id="upperleft" class="timer"><!--timer-->
     <div id="app" v-cloak>
-    <h1>Timer</h1>
+    <h1 style="font-size: 30px;">Timer</h1>
     <timer-setup v-if="!time" @set-time="setTime"></timer-setup>
     <div v-else>
       <timer :time="prettyTime"></timer>

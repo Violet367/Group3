@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "In$tE77-Dh1sch001";
+$password = "In\$tE77-Dh1sch001";
 $database = "StudyBuddy";
 
 // Create connection

@@ -1,8 +1,8 @@
 <?php
-   include 'config.php';
+   include 'config.php'; /* Connects to the database*/
    session_start();
 
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
+   if($_SERVER["REQUEST_METHOD"] == "POST") {  /* Inserts new account in database */
       // username and password sent from form
 
       $myemail = mysqli_real_escape_string($conn,$_POST['email']);
@@ -46,7 +46,7 @@
     </script>
 
   </head>
-  <style media="screen">
+  <style media="screen"> /* Background*/
     body {
       background-image: url("StudyBuddy.png");
       background-color: #cccccc;
@@ -64,7 +64,7 @@
     <button class= "log" onclick="document.getElementById('logIn').style.display='block'" style="width:auto;">Log In</button>
     <button class= "log" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
 
-    <div id="logIn" class="modal">
+    <div id="logIn" class="modal"> /* Log In */
 
       <form method="post" class="modal-content animate">
         <div class="imgcontainer">
@@ -92,7 +92,7 @@
     </div>
 
 
-  <div id="id01" class="modal">
+  <div id="id01" class="modal"> /* Sign Up */
 
     <form name = "SignUp" action = "signUp.php" method="post" class="modal-content animate" onsubmit="return validateForm();" >
       <div class="imgcontainer">

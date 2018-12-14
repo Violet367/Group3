@@ -17,6 +17,35 @@ body{
 }
 
 /*upper right log Out*/
+.log {
+  font-family: "Times New Roman", Times, serif;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: Black ;
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+
+  width: 10%;
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+
+}
+
+.log:hover {background-color: white}
+
+.log:active {
+  background-color: white;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 
 
 /*upper left*/

@@ -3,6 +3,6 @@
 session_start();
 
    if(session_destroy()) {
-      header("Location: frontPage.php");
+      header('Location: frontpage.php');
    }
  ?>

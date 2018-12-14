@@ -64,7 +64,7 @@
     <button class= "log" onclick="document.getElementById('logIn').style.display='block'" style="width:auto;">Log In</button>
     <button class= "log" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
 
-    <div id="logIn" class="modal"> /* Log In */
+    <div id="logIn" class="modal">
 
       <form method="post" class="modal-content animate">
         <div class="imgcontainer">
@@ -92,7 +92,7 @@
     </div>
 
 
-  <div id="id01" class="modal"> /* Sign Up */
+  <div id="id01" class="modal"> 
 
     <form name = "SignUp" action = "signUp.php" method="post" class="modal-content animate" onsubmit="return validateForm();" >
       <div class="imgcontainer">

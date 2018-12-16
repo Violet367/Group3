@@ -27,7 +27,7 @@
       // If result matched $myemail and $mypassword, table row must be 1 row
       if($count == 1) {
          $_SESSION['login_user'] = $myemail;
-         header("location: studybuddy.php");
+         header("location: studybuddy2.html");
       } else {
          $_SESSION['errors'] = "Your Login Name or Password is invalid";
          header("location: frontpage.php");

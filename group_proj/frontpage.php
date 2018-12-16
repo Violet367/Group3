@@ -16,13 +16,10 @@
       $count = mysqli_num_rows($result);
 
       // If result matched $myemail and $mypassword, table row must be 1 row
-
       if($count == 1) {
-
          $_SESSION['login_user'] = $myemail;
-
          header("location: studybuddy.html");
-      }else {
+      } else {
          $error = "Your Login Name or Password is invalid";
          echo $error;
       }
@@ -33,18 +30,25 @@
     <meta charset="utf-8">
     <title>Study Buddy</title>
     <link href="frontPage.css" type="text/css" rel="stylesheet"/>
-
+    <style media="screen"> /* Background*/
+      body {
+        background-image: url("StudyBuddy.png");
+        background-color: #cccccc;
+        height: 500px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+      }
+    </style>
     <script type="text/javascript">
       function validateForm(){
         if(document.forms["SignUp"]["psw-repeat"].value != document.forms["SignUp"]["psw"].value){
             alert( "PASSWORDS DO NOT MATCH \n");
             return false;
         }
-
-     }
-
+      }
     </script>
-
   </head>
   <style media="screen"> /* Background*/
     body {
@@ -65,13 +69,14 @@
     <button class= "log" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
 
     <div id="logIn" class="modal">
-
       <form method="post" class="modal-content animate">
         <div class="imgcontainer">
           <span onclick="document.getElementById('logIn').style.display='none'" class="close" title="Close Modal">&times;</span>
         </div>
-        <h1>Log In</h1>
-        <p>Please enter email and password.</p>
+        <div class="container">
+          <h1>Log In</h1>
+          <p>Please enter email and password.</p>
+        </div>
         <hr>
         <div class="container">
           <label for="email"><b>Email</b></label>
@@ -91,8 +96,16 @@
       </form>
     </div>
 
+    <div id="id01" class="modal">
+      <form name="SignUp" action="signUp.php" method="post" class="modal-content animate" onsubmit="return validateForm();" >
+        <div class="imgcontainer">
+          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+        </div>
+        <h1>Sign Up</h1>
+        <p>Please fill in this form to create an account.</p>
+        <hr>
 
-  <div id="id01" class="modal"> 
+  <div id="id01" class="modal">
 
     <form name = "SignUp" action = "signUp.php" method="post" class="modal-content animate" onsubmit="return validateForm();" >
       <div class="imgcontainer">
@@ -112,31 +125,36 @@
         <label for="pss-repeat"><b>Repeat Password</b></label>
         <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
 
-        <button type="submit">Sign Up</button>
+          <label for="pss"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="psw" required>
 
-      </div>
+          <label for="pss-repeat"><b>Repeat Password</b></label>
+          <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
 
-      <div class="container" style="background-color:#f1f1f1">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+          <button type="submit">Sign Up</button>
+        </div>
 
-      </div>
-    </form>
-  </div>
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        </div>
+      </form>
+    </div>
 
-  <script>
-  // Get the modal
-  var modal = document.getElementById('id01');
-  var mod = document.getElementById('logIn');
-   // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
-      if (event.target == mod) {
-          mod.style.display = "none";
+    <script>
+      // Get the modal
+      var modal = document.getElementById('id01');
+      var mod = document.getElementById('logIn');
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
         }
-    }
+        if (event.target == mod) {
+            mod.style.display = "none";
+        }
+      }
 
-  </script>
+    </script>
+
   </body>
 </html>

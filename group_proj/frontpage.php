@@ -3,6 +3,10 @@
    include 'helpers.php';
    session_start();
 
+   if (isset($_SESSION['login_user'])){
+     header("location: studybuddy.php");
+   }
+
    if (isset($_SESSION['errors'])) {
      $errors = $_SESSION['errors'];
      unset($_SESSION['errors']);
@@ -23,15 +27,14 @@
       // If result matched $myemail and $mypassword, table row must be 1 row
       if($count == 1) {
          $_SESSION['login_user'] = $myemail;
-         header("location: studybuddy.html");
+         header("location: studybuddy.php");
       } else {
          $_SESSION['errors'] = "Your Login Name or Password is invalid";
          header("location: frontpage.php");
       }
    }
-
-
 ?>
+
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">

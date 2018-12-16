@@ -5,9 +5,21 @@ html {
 body{
   font-family: "Lato", sans-serif;
   height: 100%;
-  background-color: #555;
+  background-color: #ddd;
+  min-width: 900px;
   /*background-image: url("landingpage.png");
   background-size: cover;*/
+}
+
+header{
+  -webkit-box-shadow: 0px 0px 10px 0px #777;
+  -moz-box-shadow: 0px 0px 10px 0px #777;
+  box-shadow: 0px 0px 10px 0px #777;
+  background-color:#d85050;
+  margin-bottom:25px;
+}
+.mdl-navigation__link:hover{
+  background-color: #bf4444;
 }
 
 .container{
@@ -60,35 +72,93 @@ body{
   top: 72px;
 }
 
-/*upper left*/
-.timer {
-  font-size: 30px;
-  background: #d45046;
-  float: left;
-  width: 35%;
-  color: white;
+#parent{
+  width: 100%;
+}
+
+#left {
+  width: 33%;
+  margin-right: 3%;
+  display: inline-block;
+  vertical-align: top;
 }
 
 /*parent of .tabcontent*/
-.np{
-  float: right;
-  width: 65%;
+#right{
+  width: 62%;
   height: 100%;
-  background-color: #ccc;
+  border: 1px solid #ccc;
+  display: inline-block;
+  vertical-align: top;
+}
+
+/*upper left*/
+#timer {
+  position: relative;
+  padding: 20px;
+  font-size: 30px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  text-align: left;
+  -webkit-box-shadow: 0px 10px 10px -5px #c6c6c6;
+  -moz-box-shadow: 0px 10px 10px -5px #c6c6c6;
+  box-shadow: 0px 10px 10px -5px #c6c6c6;
+}
+#timer #app {
+  /*padding: 10px;*/
+  margin: 0 auto;
+  max-width: 1000px;
+  font-size: 16px;
+}
+#minLabel, #secLabel {
+  width: 60px;
+  text-transform: uppercase;
+  color: gray;
+  margin-right:10px;
+}
+#minLabel span, #secLabel span {
+  position: relative;
+  left: 5px;
+  font-size: 10px;
+}
+#min, #sec {
+  text-align: center;
+  width: 60px;
+  background-color: #ddd;
+  border-radius: 5px;
+  color: gray;
+}
+#min {
+  margin-right:10px;
+}
+#timeBtnContainer{
+  position: absolute;
+  top:0;bottom:0;right:0;
+  padding: 10px 15px;
+  width: 110px;
+  border-left: 1px solid #eee;
+  text-align: right;
+}
+#timeBtnContainer button{
+  margin-bottom: 10px;
+}
+#timeBtnContainer button span {
+  display: none;
+}
+.timer{
+  margin-top: 25px;
+  margin-bottom: 10px;
+  font-size: 40px;
 }
 
 /*lower left*/
-.tdl{
-  float: left;
-  width: 35%;
-  height: 73%;
-  bottom: 0;
-  left: 0;
-  position: absolute;
+#todolist{
+
 }
 
 /* Style the header */
-.header {
+#myDiv {
     background-color: #d45046;
     padding: 10px 10px;
     color: white;
@@ -96,7 +166,7 @@ body{
 }
 
 /* Clear floats after the header */
-.header:after {
+#myDiv:after {
     content: "";
     display: table;
     clear: both;
@@ -308,14 +378,6 @@ textarea {
   box-sizing: inherit;
 }
 
-#app {
-  /*padding: 10px;*/
-  margin: 0 auto;
-  max-width: 1000px;
-  text-align: center;
-  font-size: 16px;
-}
-
 input[type=number] {
   padding: 10px;
   font-size: inherit;
@@ -326,13 +388,7 @@ input[type=number] {
 }
 
 button {
-  padding: 10px;
-  width: 20%;
-  background: #d9d9d9;
-  color: #555;
-  text-align: center;
   font-size: 20px;
-  cursor: pointer;
   transition: 0.3s;
   border-style: solid;
   border-width: thin;

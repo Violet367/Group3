@@ -17,8 +17,6 @@
 
       header('location: todoList.php');
     }
-
-
   }
 
   //$_SESSION['completed_tasks'] = array();

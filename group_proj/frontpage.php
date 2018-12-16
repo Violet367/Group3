@@ -74,14 +74,19 @@
           return false;
         }
       }
+      function showModalAndClearFormErrors(modal){
+        document.getElementById(modal).style.display='block';
+        $('.form-errors').text("");
+        $('.form-errors').hide();
+      }
     </script>
   </head>
 
   <body>
     <div style="position:absolute;top:0;left:0;right:0;bottom:0;">
       <div style="width:300px;margin:0 auto;top:60%;position:relative;padding-left:20px;">
-        <button class= "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" onclick="document.getElementById('logIn').style.display='block'" style="width: 120px;height:45px;background-color: #eee;text-transform:capitalize;font-size: 24px;margin-right: 20px;">Log In</button>
-        <button class= "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" onclick="document.getElementById('id01').style.display='block'" style="width: 140px;height:45px;background-color: #eee;text-transform:capitalize;font-size: 24px;">Sign Up</button>
+        <button class= "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" onclick="showModalAndClearFormErrors('logIn')" style="width: 120px;height:45px;background-color: #eee;text-transform:capitalize;font-size: 24px;margin-right: 20px;">Log In</button>
+        <button class= "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" onclick="showModalAndClearFormErrors('id01')" style="width: 140px;height:45px;background-color: #eee;text-transform:capitalize;font-size: 24px;">Sign Up</button>
       </div>
     </div>
 

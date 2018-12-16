@@ -1,7 +1,6 @@
 html {
   box-sizing: border-box;
 }
-
 body{
   font-family: "Lato", sans-serif;
   height: 100%;
@@ -10,79 +9,29 @@ body{
   /*background-image: url("landingpage.png");
   background-size: cover;*/
 }
-
 header{
   -webkit-box-shadow: 0px 0px 10px 0px #777;
   -moz-box-shadow: 0px 0px 10px 0px #777;
   box-shadow: 0px 0px 10px 0px #777;
   background-color:#d85050;
-  margin-bottom:25px;
 }
 .mdl-navigation__link:hover{
   background-color: #bf4444;
 }
-
-.container{
-    overflow: auto;
-    position: relative;
-    height: 100%;
-}
-
-/*upper right log Out*/
-
-
-#log button {
-  font-family: "Times New Roman", Times, serif;
-  padding: 15px 25px;
-  font-size: 18px;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  outline: none;
-  color: Black ;
-  background-color: white;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
-  right: 16px;
-  right: -150px;
-  transition: 0.3s;
-  width: 15%;
-  position: fixed;
-
-
-}
-
-#log button:hover {
-  background-color: white;
-  right:0;
-}
-
-#log button:active {
-  background-color: white;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-
-#one {
-  top: 8px;
-}
-
-#two {
-  top: 72px;
-}
-
 #parent{
   width: 100%;
-}
+  overflow: auto;
+  position: relative;
+  min-height: 90%;
+  padding: 0 25px 25px 25px;
 
+}
 #left {
   width: 33%;
   margin-right: 3%;
   display: inline-block;
   vertical-align: top;
 }
-
 /*parent of .tabcontent*/
 #right{
   width: 62%;
@@ -91,7 +40,6 @@ header{
   display: inline-block;
   vertical-align: top;
 }
-
 /*upper left*/
 #timer {
   position: relative;
@@ -116,6 +64,8 @@ header{
   text-transform: uppercase;
   color: gray;
   margin-right:10px;
+  padding: 10px 0;
+  display: inline-block;
 }
 #minLabel span, #secLabel span {
   position: relative;
@@ -128,6 +78,13 @@ header{
   background-color: #ddd;
   border-radius: 5px;
   color: gray;
+
+  padding: 10px;
+  font-size: inherit;
+  width: 100%;
+  border-style: solid;
+  border-width: thin;
+  border-color: #bbb;
 }
 #min {
   margin-right:10px;
@@ -151,12 +108,30 @@ header{
   margin-bottom: 10px;
   font-size: 40px;
 }
-
 /*lower left*/
-#todolist{
-
+#todoList{
+  position: relative;
+  padding: 20px 0;
+  font-size: 30px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  text-align: left;
+  -webkit-box-shadow: 0px 10px 10px -5px #c6c6c6;
+  -moz-box-shadow: 0px 10px 10px -5px #c6c6c6;
+  box-shadow: 0px 10px 10px -5px #c6c6c6;
+  margin-top:20px;
 }
-
+#todoListHeader{
+  padding: 0 20px;
+}
+#addTaskBtnContainer{
+  position: absolute;
+  top:0;bottom:0;right:0;
+  padding: 10px 15px;
+  width: 110px;
+  text-align: right;
+}
 /* Style the header */
 #myDiv {
     background-color: #d45046;
@@ -164,14 +139,12 @@ header{
     color: white;
     text-align: center;
 }
-
 /* Clear floats after the header */
 #myDiv:after {
     content: "";
     display: table;
     clear: both;
 }
-
 /* Style the "Add" button */
 .addBtn {
     padding: 10px;
@@ -189,29 +162,16 @@ header{
     border-color: #bbb;
 
 }
-
 .addBtn:hover {
     background-color: #bbb;
 }
 
-/* Style the input */
-#Input {
-    margin: 0;
-    border: none;
-    border-radius: 0;
-    width: 75%;
-    padding: 10px;
-    float: left;
-    font-size: 16px;
-    border-style: solid;
-    border-width: thin;
-    border-color: #bbb;
-}
 
 /* Remove margins and padding from the list */
 ul {
     margin: 0;
     padding: 0;
+    list-style-type: none;
 }
 
 /* Style the list items */
@@ -256,28 +216,27 @@ ul li.checked::before {
     border-color: #555;
     border-style: solid;
     border-width: 0 2px 2px 0;
-    top: 10px;
-    left: 16px;
+    top: 11px;
+    left: 15px;
     transform: rotate(45deg);
     height: 15px;
     width: 7px;
 }
 
 /* Style the close button */
-.close {
+.closeTask {
     position: absolute;
     right: 0;
     top: 0;
     padding: 12px 16px 12px 16px;
 }
 
-.close:hover {
+.closeTask:hover {
     background-color: #e17169;
     color: white;
 }
 
 /*NOTEPAD*/
-
 .theTabDIV{
   width: auto;
 }
@@ -327,7 +286,7 @@ ol button:hover {
     background-color: #bbb;
 }
 
-#theInput{
+#newTabInput{
   margin: 0;
   border-style: solid;
   border-width: thin;
@@ -365,19 +324,17 @@ textarea {
   top: 0;
   padding: 4px 4px 4px 4px;
 }
-
 .close:hover {
   background-color: #f44336;
   color: white;
 }
-
-
 /*TIMER*/
 
 *, *::before, *::after {
   box-sizing: inherit;
 }
 
+/* Style the input
 input[type=number] {
   padding: 10px;
   font-size: inherit;
@@ -385,6 +342,15 @@ input[type=number] {
   border-style: solid;
   border-width: thin;
   border-color: #bbb;
+}
+input {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 75%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
 }
 
 button {
@@ -399,12 +365,13 @@ button:hover {
     background-color: #bbb;
 }
 
-[v-cloak] {
-  opacity: 0;
-}
-
 label {
   width: 20%;
   padding: 10px 0;
   display: inline-block;
+}
+*/
+
+[v-cloak] {
+  opacity: 0;
 }

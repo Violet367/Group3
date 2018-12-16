@@ -2,6 +2,7 @@
    include 'config.php'; /* Connects to the database */
    include 'helpers.php';
    session_start();
+   include 'todoList.php';
 
 ?>
 
@@ -31,6 +32,7 @@
           <div class="mdl-navigation__link" style="color:white;margin-right:10px;">
             <img src="images/002-user.png" width="32px" height="32px" style="position:relative;bottom:1px;margin-right: 10px;opacity: 0.7;" />
             <?php echo $_SESSION['login_user']; ?>
+
           </div>
           <a class="mdl-navigation__link" href="save.php" style="color:white;">
             Save <img src="images/save-button.png" width="20px" height="20px" style="position:relative;bottom:1px;margin-left: 10px;opacity: 0.7;" />
@@ -41,10 +43,9 @@
         </nav>
       </div>
     </header>
-
-    <div class="container" id="parent" style="padding: 0 25px;">
+    <div style="height:25px;"></div>
+    <div id="parent">
       <div id="left">
-
         <div id="timer"><!--timer-->
           <div id="app" v-cloak>
             <div style="font-size: 20px;font-weight: bold;">
@@ -63,13 +64,47 @@
           </div>
         </div><!--timer-->
 
-        <div id="todolist"> <!--Todo list-->
-          <div id="myDIV">
-            <h2>To Do List</h2>
-            <input type="text" id="Input" placeholder="Enter a task...">
-            <span onclick="newListElement()" class="addBtn">Add</span>
+        <div id="todoList"> <!--Todo list-->
+          <div id="todoListHeader">
+            <div style="font-size: 20px;font-weight: bold;">
+              <img src="images/006-files-and-folders.png" width="20px" height="20px" style="position:relative;bottom:3px;margin-right: 5px;opacity: 0.7;" />
+              To Do List
+            </div>
+            <form method="POST" action="studybuddy.php" style="min-height: 60px;">
+              <?php if (isset($errors) || $errors != "") { ?>
+                <div style="color:red;font-size:14px;margin-top:4px;"><?php echo "$errors"; ?></div>
+              <?php } ?>
+
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" name="task" type="text" placeholder="Enter a task..">
+              </div>
+
+              <div id="addTaskBtnContainer">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" name= "submit" class="">Add</button>
+              </div>
+            </form>
           </div>
-          <ul id="myUL"></ul>
+
+          <ul id="todoListItems">
+            <?php $i = 1; while ($row = mysqli_fetch_array($tasks)) { ?>
+              <?php
+                $key_exists = array_key_exists($row['idToDo'], $_SESSION['completed_tasks']);
+                $task_checked = FALSE;
+                if ($key_exists){
+                  $task_checked = $_SESSION['completed_tasks'][$row['idToDo']];
+                }
+              ?>
+              <li class="<?php echo ($task_checked ? "checked" : ""); ?>" style="padding:0;font-size: 16px;">
+                <a href="studybuddy.php?mark_task_completed=<?php echo $row['idToDo']; ?>" style="text-decoration:none;color:#333;">
+                  <div style="height:100%;width:100%;padding: 10px 8px 10px 32px;">
+                    <span style="margin-right: 10px;"><?php echo $i; ?></span>
+                    <?php echo $row['name']; ?>
+                  </div>
+                </a>
+                <a href="studybuddy.php?del_todo=<?php echo $row['idToDo']; ?>" class="closeTask">&times;</a>
+              </li>
+            <?php $i++; } ?>
+          </ul>
         </div><!--Todo list-->
 
       </div>
@@ -81,7 +116,7 @@
           <button class="tablink" onclick="openNote('INST466', this, '#555')">INST466</button>
         </ol>
         <div id="tabDIV" class="tablink">
-          <input type="text" id="theInput" placeholder="New Tab...">
+          <input type="text" id="newTabInput" placeholder="New Tab...">
           <span onclick="newTabElement()" class="add">Add</span>
         </div>
         <div id="INST201" class="tabcontent">
@@ -96,6 +131,8 @@
       </div><!--right side of page, notepad-->
 
     </div><!--parent-->
+
+    USER_ID: <?php echo get_user_id_from_email($conn); ?>
     <script src="studybuddy.js?<?php echo date('l jS \of F Y h:i:s A'); ?>"></script>
   </body>
 </html>

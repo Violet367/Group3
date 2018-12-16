@@ -1,0 +1,773 @@
+html {
+  box-sizing: border-box;
+}
+
+body{
+  background-image: url("studybuddybg.png");
+  background-size: cover;
+  position: relative;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container{
+    overflow: auto;
+    position: relative;
+}
+
+/*upper right log Out*/
+
+
+#log button {
+  font-family: "Times New Roman", Times, serif;
+  padding: 15px 25px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: Black ;
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  right: 16px;
+  right: -150px;
+  transition: 0.3s;
+  width: 15%;
+  position: fixed;
+
+
+}
+
+#log button:hover {
+  background-color: white;
+  right:0;
+}
+
+#log button:active {
+  background-color: white;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#one {
+  top: 8px;
+}
+
+#two {
+  top: 72px;
+}
+
+/*parent of .tabcontent, aka right*/
+.np{
+  float: right;
+  width: 70%;
+  height: 100%;
+  background-color: transparent;
+}
+
+/*upper left*/
+.time {
+  float: right;
+  width: 30%;
+  height: 20%;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+/*lower left*/
+.tdl{
+  float: left;
+  width: 30%;
+  height: 50%;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  display: inline-block;
+  background-color: transparent;
+}
+
+/* Style the header */
+.header {
+    background-color: #bbb;
+    padding: 10px 10px;
+    color: white;
+    text-align: center;
+    border-radius: 0;
+    border-style: solid;
+    border-width: thin;
+    border-color: #999;
+}
+
+/* Clear floats after the header */
+.header:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Style the "Add" button */
+.addBtn {
+    padding: 7px;
+    width: 20%;
+    background: #f55d4a;
+    color: #fff;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    border-style: solid;
+    border-width: thin;
+    border-color: #999;
+
+}
+
+.addBtn:hover {
+    background-color: #bbb;
+}
+
+/* Style the input */
+#Input {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 75%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #bbb;
+}
+
+/* Remove margins and padding from the list */
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the list items */
+ul li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    background: #eee;
+    color: #555;
+    font-size: 18px;
+    transition: 0.2s;
+
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+    background: #f9f9f9;
+    color: #555;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+    background: #ddd;
+    color: #555;
+}
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+    background: #888;
+    color: #fff;
+    text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+    content: '';
+    position: absolute;
+    border-color: #555;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+}
+
+/* Style the close button */
+.close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+    background-color: #e17169;
+    color: white;
+}
+
+/*NOTEPAD*/
+
+.theTabDIV{
+  width: auto;
+}
+
+.add {
+    padding: 10px 14px;
+    width: 15%;
+    background: #f55d4a;
+    color: #fff;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-style: solid;
+    border-width: thin;
+    border-color: #bbb;
+    position: relative;
+    left: 50px;
+}
+
+.add:hover {
+    background-color: #bbb;
+}
+
+/*TABS*/
+.tabcontent {
+    color: white;
+    padding: 50px;
+    text-align: center;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+}
+
+ol button {
+    background-color: #f55d4a;
+    color: white;
+    float: left;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 16px;
+    width: 13%;
+    margin: 0;
+    position: relative;
+    left: 50px;
+}
+
+ol button:hover {
+    background-color: #bbb;
+}
+
+#theInput{
+  margin: 0;
+  border-style: solid;
+  border-width: thin;
+  border-color: #bbb;
+  border-radius: 0;
+  width: 25%;
+  padding: 13px 14px;
+  float: left;
+  font-size: 16px;
+  position: relative;
+  left: 50px;
+}
+
+.notes {
+    background-image: linear-gradient(#FFFFCC, #FFFFCC 30px, #ccc 30px, #ccc 31px, white 31px);
+    background-size: 100% 31px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    line-height: 31px;
+}
+
+#newTab{
+  width: auto;
+}
+
+textarea {
+  width: inherit;
+  height: 550px;
+  /*margin: 3%;*/
+}
+
+.close {
+  position: relative;
+  right: 0;
+  top: 0;
+  padding: 4px 4px 4px 4px;
+}
+
+.close:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+
+/*TIMER*/
+/**, *::before, *::after {
+  box-sizing: inherit;
+}*/
+
+#app {
+  text-align: center;
+  padding: 10px;
+  margin: 0 auto;
+  max-width: 1000px;
+  height: 30%;
+}
+
+input[type=number] {
+  padding: 10px;
+  font-size: inherit;
+  width: 100%;
+}
+
+button {
+  padding: 10px;
+}
+
+[v-cloak] {
+  opacity: 0;
+}
+
+label {
+  width: 20%;
+  padding: 10px 0;
+  display: inline-block;
+}
+
+.timer {
+  font-size: 2em;
+  margin: 20px;
+}
+
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #f55d4a;
+  transition: background-color .15s ease;
+}
+
+.site--break {
+  background-color: #3eab45;
+}
+
+.site__content {
+  align-items: center;
+  justify-content: center;
+}
+
+.timecontainer {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.navcontainer{
+  padding: 0 1rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.nav {
+  display: flex;
+  height: 3.625rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-size: 20px;
+}
+
+.nav-toggle {
+  height: 100%;
+}
+
+.sidebar {
+  padding: 77px 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 256px;
+  height: 100vh;
+  background-color: #fff;
+  color: #333;
+  will-change: transform;
+  overflow-y: auto;
+  z-index: 4;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0, 1);
+}
+
+.sidebar-enter-active,
+.sidebar-leave-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0, 1);
+}
+
+.sidebar-enter,
+.sidebar-leave-to {
+  transform: translateX(100%);
+}
+
+.sidebar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  top: 5px;
+  left: 16px;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+}
+
+.filter {
+  margin-bottom: 24px;
+}
+
+.filter__title {
+  color: #333;
+}
+
+.filter__time {
+  color: #474747;
+}
+
+.filter__reset-btn {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #333;
+}
+
+/* input[type=range] reset */
+input[type=range] {
+  -webkit-appearance: none;
+  /* Hides the slider so that custom slider can be made */
+  width: 100%;
+  /* Specific width is required for Firefox. */
+  background: transparent;
+  /* Otherwise white in Chrome */
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none;
+  /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  /* Hides the slider so custom styles can be added */
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+/* input[type=range] custom
+ * THUMB
+ */
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #d45046;
+  cursor: pointer;
+  margin-top: -6px;
+  /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+}
+
+/* All the same stuff for Firefox */
+input[type=range]::-moz-range-thumb {
+  border: 0;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #d45046;
+  cursor: pointer;
+}
+
+/* All the same stuff for IE */
+input[type=range]::-ms-thumb {
+  border: 0;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #d45046;
+  cursor: pointer;
+}
+
+/* input[type=range] custom
+ * TRACK
+ */
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #E1E1E1;
+  border: 0;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #E1E1E1;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #E1E1E1;
+  border: 0;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+  background: #E1E1E1;
+  border: 0;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: #E1E1E1;
+}
+
+input[type=range]::-ms-fill-upper {
+  background: #E1E1E1;
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+  background: #E1E1E1;
+}
+
+.timer {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  max-width: 170px;
+  height: 170px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+}
+
+.timer::before, .timer::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.timer::before {
+  width: 120%;
+  height: 120%;
+}
+.timer::after {
+  width: 80%;
+  height: 80%;
+}
+
+.timer__session {
+  font-size: 30px;
+}
+
+.timer__countdown {
+  font-size: 20px;
+}
+
+button {
+  padding: 0;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  user-select: none;
+  transition: border-color .15s ease;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+.controls {
+  padding-bottom: 24px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-sm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: calc(2.5rem + 4px);
+  height: calc(2.5rem + 4px);
+  line-height: 3rem;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+}
+
+.btn-md {
+  margin: 1.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: calc(3.5rem + 4px);
+  height: calc(3.5rem + 4px);
+  line-height: 3rem;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+}
+
+.btn-sm:hover,
+.btn-md:hover {
+  border-color: #fff;
+}
+
+.modal {
+  position: fixed;
+  display: block;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 1050;
+  transition: all .3s ease;
+}
+
+.modal__inner {
+  position: relative;
+  top: 0;
+  right: 0;
+  width: auto;
+  height: calc(100vh - 3em);
+  max-width: 768px;
+  margin: 1.5em auto;
+  padding: 0 1em;
+}
+
+.modal__content {
+  padding: 1rem 0;
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  color: #333;
+  border-radius: 4px;
+  transition: all .3s ease;
+  z-index: 1050;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+  padding: 1em;
+}
+
+.modal-header > h3,
+.modal-body > h3,
+.modal-footer > h3 {
+  margin: 0;
+}
+
+.modal__close {
+  position: absolute;
+  padding: 1em;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.modal-body {
+  text-align: left;
+}
+
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  opacity: .64;
+  transition: opacity .3s ease;
+  z-index: 1040;
+}
+
+.modal-enter,
+.modal-enter .modal__overlay,
+.modal-leave-active .modal__overlay {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal__content,
+.modal-leave-active .modal__content {
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+}

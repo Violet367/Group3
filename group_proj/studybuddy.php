@@ -24,7 +24,10 @@
     <header class="" style=""><!-- d45046 -->
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <span class="mdl-layout-title" style="margin-right: 50px;color:white;font-size:16px;">StudyBuddy</span>
+        <span class="mdl-layout-title" style="margin-right: 50px;color:white;font-size:20px;font-weight:bold;">
+          <img src="images/oldman.png" width="32px" height="32px" style="position:relative;bottom:1px;margin-right: 10px;" />
+          <span style="position: relative;top:2px;">Study Buddy</span>
+        </span>
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation -->
@@ -110,14 +113,16 @@
       </div>
 
       <div id="right"> <!--right side of page, notepad-->
-        <ol id="myTabs">
-          <button class="tablink" onclick="openNote('INST201', this, '#555')" id="defaultOpen">INST201</button>
-          <button class="tablink" onclick="openNote('INST377', this, '#555')">INST377</button>
-          <button class="tablink" onclick="openNote('INST466', this, '#555')">INST466</button>
-        </ol>
-        <div id="tabDIV" class="tablink">
-          <input type="text" id="newTabInput" placeholder="New Tab...">
-          <span onclick="newTabElement()" class="add">Add</span>
+        <div id="notesHeader">
+          <ol id="myTabs">
+            <button class="tablink" onclick="openNote('INST201', this, '#555')" id="defaultOpen">INST201</button>
+            <button class="tablink" onclick="openNote('INST377', this, '#555')">INST377</button>
+            <button class="tablink" onclick="openNote('INST466', this, '#555')">INST466</button>
+          </ol>
+          <div id="tabDIV" class="tablink">
+            <input type="text" id="newTabInput" placeholder="New Tab...">
+            <span onclick="newTabElement()" class="add">Add</span>
+          </div>
         </div>
         <div id="INST201" class="tabcontent">
             <textarea class="notes" placeholder="Start typing..."></textarea>

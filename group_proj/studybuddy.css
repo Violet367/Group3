@@ -37,8 +37,14 @@ header{
   width: 62%;
   height: 100%;
   border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
   display: inline-block;
   vertical-align: top;
+  -webkit-box-shadow: 0px 10px 10px -5px #c6c6c6;
+  -moz-box-shadow: 0px 10px 10px -5px #c6c6c6;
+  box-shadow: 0px 10px 10px -5px #c6c6c6;
+
 }
 /*upper left*/
 #timer {
@@ -237,10 +243,6 @@ ul li.checked::before {
 }
 
 /*NOTEPAD*/
-.theTabDIV{
-  width: auto;
-}
-
 .add {
     padding: 14px 16px;
     width: 15%;

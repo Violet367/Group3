@@ -59,16 +59,8 @@ sudo git pull
 
 ### Database Structure
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
-
-![Database Structure]
-(Group3/group_proj/db.png)
-
-<img src="/Group3/group_proj/db.png"/>
-https://github.com/Violet367/Group3/blob/master/group_proj/db.png?raw=true
 <img src="https://github.com/Violet367/Group3/blob/master/group_proj/db.png?raw=true"/>
-
-      
+     
 Show in the figure above is the database structure of StudyBuddy. The accounts tables stores the username and password of the unique accounts made on the sign-up page. Then retrieved during login-in for password verification. The ToDo and Notes table is dependant on the Accounts tables by the foreign key( user_id ) and saved at log-out. The notes table stores the name and contents on the note to its respective user account. The ToDo table saves the name of the task the user creates. Both the Note and ToDo tables contents are retrieved at log-in to restore the users last setting.
 
 #### Database connection

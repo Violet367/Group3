@@ -17,15 +17,18 @@ application.
 ### Account Information
 
 ####Sign Up
+
 In order to Sign up for Study Buddy, Select the “Sign Up” button on the top left corner of the screen. 
 In order to sign up, the user will be asked to enter an email and set a password. 
 
 
 ####Sign In
+
 If an account has already been made, Select “Sign In” and enter the email address and password for the account.
 
 
 ####Features
+
 1. Timer 
 On the top left corner is a timer. This would be ideally used for using the Pomodoro study technique, 
 but the user may use it in the method that would be ideal for them. Once the time has run out, the timer will ring.

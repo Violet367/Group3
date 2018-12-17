@@ -1,8 +1,18 @@
 <?php
    include 'config.php'; /* Connects to the database */
    include 'helpers.php';
-   session_start();
    include 'todoList.php';
+   include 'classes.php';
+   include 'notepad.php';
+
+   if (!isset($_SESSION['login_user'])){
+     header("location: frontpage.php");
+   }
+
+   if (isset($_SESSION['errors'])) {
+     $errors = $_SESSION['errors'];
+     unset($_SESSION['errors']);
+   }
 
 ?>
 
@@ -11,6 +21,7 @@
   <head>
     <title> Study Buddy </title>
     <link rel="stylesheet" href="studybuddy.css?<?php echo date('l jS \of F Y h:i:s A'); ?>">
+    <link href="snackbar.css" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script>
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-red.min.css" />
@@ -37,10 +48,10 @@
             <?php echo $_SESSION['login_user']; ?>
 
           </div>
-          <a class="mdl-navigation__link" href="save.php" style="color:white;">
-            Save <img src="images/save-button.png" width="20px" height="20px" style="position:relative;bottom:1px;margin-left: 10px;opacity: 0.7;" />
+          <a class="mdl-navigation__link" onclick="$('#saveNotesBtn').click();" style="color:white;cursor: pointer;">
+            Save Notes <img src="images/save-button.png" width="20px" height="20px" style="position:relative;bottom:1px;margin-left: 10px;opacity: 0.7;" />
           </a>
-          <a class="mdl-navigation__link" href="logOut.php" style="color:white;">
+          <a class="mdl-navigation__link" href="logOut.php" style="color:white;cursor: pointer;">
             Log Out <img src="images/logout-button.png" width="20px" height="20px" style="position:relative;bottom:1px;margin-left: 10px;opacity: 0.7;" />
           </a>
         </nav>
@@ -73,17 +84,13 @@
               <img src="images/006-files-and-folders.png" width="20px" height="20px" style="position:relative;bottom:3px;margin-right: 5px;opacity: 0.7;" />
               To Do List
             </div>
-            <form method="POST" action="studybuddy.php" style="min-height: 60px;">
-              <?php if (isset($errors) || $errors != "") { ?>
-                <div style="color:red;font-size:14px;margin-top:4px;"><?php echo "$errors"; ?></div>
-              <?php } ?>
-
+            <form method="POST" action="todoList.php" style="min-height: 60px;">
               <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" name="task" type="text" placeholder="Enter a task..">
+                <input class="mdl-textfield__input" name="task" type="text" placeholder="Enter a task...">
               </div>
 
               <div id="addTaskBtnContainer">
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" name= "submit" class="">Add</button>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" name= "submit">Add</button>
               </div>
             </form>
           </div>
@@ -97,14 +104,16 @@
                   $task_checked = $_SESSION['completed_tasks'][$row['idToDo']];
                 }
               ?>
-              <li class="<?php echo ($task_checked ? "checked" : ""); ?>" style="padding:0;font-size: 16px;">
-                <a href="studybuddy.php?mark_task_completed=<?php echo $row['idToDo']; ?>" style="text-decoration:none;color:#333;">
+              <li class="<?php echo ($task_checked ? "checked" : ""); ?>" style="padding:0;font-size: 16px;overflow:hidden;">
+                <a href="todoList.php?mark_task_completed=<?php echo $row['idToDo']; ?>" style="text-decoration:none;color:#333;">
                   <div style="height:100%;width:100%;padding: 10px 8px 10px 32px;">
                     <span style="margin-right: 10px;"><?php echo $i; ?></span>
                     <?php echo $row['name']; ?>
                   </div>
                 </a>
-                <a href="studybuddy.php?del_todo=<?php echo $row['idToDo']; ?>" class="closeTask">&times;</a>
+                <a href="todoList.php?del_todo=<?php echo $row['idToDo']; ?>" class="closeTask" style="text-decoration: none;">
+                  <span style="position:relative;bottom:2px;font-size:20px;font-weight:bold;">&times;</span>
+                </a>
               </li>
             <?php $i++; } ?>
           </ul>
@@ -112,32 +121,66 @@
 
       </div>
 
-      <div id="right"> <!--right side of page, notepad-->
-        <div id="notesHeader">
-          <ol id="myTabs">
-            <button class="tablink" onclick="openNote('INST201', this, '#555')" id="defaultOpen">INST201</button>
-            <button class="tablink" onclick="openNote('INST377', this, '#555')">INST377</button>
-            <button class="tablink" onclick="openNote('INST466', this, '#555')">INST466</button>
-          </ol>
-          <div id="tabDIV" class="tablink">
-            <input type="text" id="newTabInput" placeholder="New Tab...">
-            <span onclick="newTabElement()" class="add">Add</span>
+      <div id="right"> <!--right side of page, notepad,  mdl-button-accent-->
+
+        <!-- Add a class -->
+        <form method="POST" action="classes.php" style="min-height: 70px;position:relative;">
+
+          <div class="mdl-textfield mdl-js-textfield" style="margin-left:20px;">
+            <input class="mdl-textfield__input" name="class_name" type="text" placeholder="Add class name..."><!--  id="classInput" -->
           </div>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" name="submit" style="position:absolute;top:15px;right:20px;">Add Class</button>
+
+        </form>
+
+        <div id="notesHeader" style="margin-bottom:10px;padding-left:20px;">
+          <?php $i = 1; while ($row = mysqli_fetch_array($classes)) { ?>
+              <button id="<?php echo $row['class_name']; ?>" class="<?php echo ($_SESSION['current_class'] == $row['class_name']) ? 'mdl-button--accent' : 'mdl-button--colored'; ?> tablink mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="margin-right:10px;position:relative;color:white;margin-bottom:10px;padding:0;">
+                <a href="notepad.php?change_current_class=<?php echo $row['class_name']; ?>" style="text-decoration: none;">
+                  <div style="color:white;padding: 0 40px 0 16px;"><?php echo $row['class_name']; ?></div>
+                </a>
+                <a href="classes.php?del_class=<?php echo $row['class_name']; ?>">
+                  <div class="close">&times;</div>
+                </a>
+              </button>
+              <!-- remember to put delete buttons in each of the tabs -->
+          <?php $i++; } ?>
         </div>
-        <div id="INST201" class="tabcontent">
-            <textarea class="notes" placeholder="Start typing..."></textarea>
-        </div>
-        <div id="INST377" class="tabcontent">
-          <textarea class="notes" placeholder="Start typing..."></textarea>
-        </div>
-        <div id="INST466" class="tabcontent">
-          <textarea class="notes" placeholder="Start typing..."></textarea>
-        </div>
+
+        <!-- Save Notes for current class-->
+        <form method="POST" action="notepad.php" style="min-height: 60px;">
+          <input type="hidden" name="class_name" value="<?php if (isset($_SESSION['current_class'])){echo $_SESSION['current_class'];} ?>">
+          <textarea class="notes" name="contents" placeholder="Start typing..."><?php if (isset($_SESSION['current_notes'])){echo $_SESSION['current_notes'];} ?></textarea>
+          <button id="saveNotesBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" name="submit" style="visibility:hidden;">Save Notes</button>
+        </form>
+
       </div><!--right side of page, notepad-->
 
     </div><!--parent-->
 
-    USER_ID: <?php echo get_user_id_from_email($conn); ?>
+    <div id="notification" class="notification">
+      <div id="notification-text" class="snackbar-text">
+        <?php if (isset($errors) && $errors != "") { ?>
+          <div style="color:red;"><?php echo "$errors"; ?></div>
+        <?php } ?>
+      </div>
+      <div class="snackbar-close ripple" onclick="$('.notification').toggleClass('active')">
+        <div class="snackbar-text">
+          <span style="font-size:20px;position:relative;left:4px;bottom:1px;">&times;</span>
+        </div>
+      </div>
+    </div>
+
     <script src="studybuddy.js?<?php echo date('l jS \of F Y h:i:s A'); ?>"></script>
+    <script>
+      $(document).ready(function(){
+        if ($("#notification-text").text().trim() != ""){
+          $("#notification").toggleClass("active");
+        } else {
+          $("#notification").removeClass("active");
+        }
+      })
+    </script>
+
   </body>
 </html>

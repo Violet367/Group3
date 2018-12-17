@@ -1,4 +1,4 @@
-# Project name: StudyBuddy
+# StudyBuddy
 ****
 
 ### Project team member contact information:

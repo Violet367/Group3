@@ -58,6 +58,7 @@ sudo git pull
 ````
 
 ### Database Structure
+[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
 ![Database Structure]
 (https://github.com/Violet367/Group3/blob/master/group_proj/db.png)
       

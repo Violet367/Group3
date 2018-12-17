@@ -20,7 +20,7 @@ application.
 <img width="589" alt="signuppic" src="https://user-images.githubusercontent.com/42840147/50101276-646aa400-01f0-11e9-863d-2300bf17c05d.png">
 
 In order to Sign up for Study Buddy, Select the “Sign Up” button on the top left corner of the screen. 
-In order to sign up, the user will be asked to enter an email and set a password. 
+To sign up, the user will be asked to enter an email and set a password. 
 
 
 ### Sign In

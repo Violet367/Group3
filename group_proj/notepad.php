@@ -8,10 +8,13 @@
   if (isset($_POST['submit'])){
     $class_name = $_POST['class_name'];
     $contents = $_POST['contents'];
-    if (empty($contents)) {
-      $errors = "Notes can't be empty";
+    if (empty($class_name)) {
+      $errors = "Need to select a class to save notes";
       $_SESSION['errors'] = $errors;
       echo $errors;
+    } else if (empty($contents)) {
+      $errors = "Notes can't be empty";
+      $_SESSION['errors'] = $errors;
     } else {
       $sql = "UPDATE Notes SET contents='$contents' WHERE class_name='$class_name' AND user_id_fk='$user_id'";
       if (mysqli_query($conn, $sql)){

@@ -28,9 +28,14 @@
     echo $sql;
     if (mysqli_query($conn, $sql)){
         echo "Class deleted";
+        if ($class_name == $_SESSION['current_class']){
+          $_SESSION['current_class'] = "";
+        }
     } else{
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
     }
+
+
     header('location: studybuddy.php');
   }
 

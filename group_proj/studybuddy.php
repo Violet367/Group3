@@ -149,8 +149,8 @@
 
         <!-- Save Notes for current class-->
         <form method="POST" action="notepad.php" style="min-height: 60px;">
-          <input type="hidden" name="class_name" value="<?php echo $_SESSION['current_class']; ?>">
-          <textarea class="notes" name="contents" placeholder="Start typing..."><?php echo $_SESSION['current_notes']; ?></textarea>
+          <input type="hidden" name="class_name" value="<?php if (isset($_SESSION['current_class'])){echo $_SESSION['current_class'];} ?>">
+          <textarea class="notes" name="contents" placeholder="Start typing..."><?php if (isset($_SESSION['current_notes'])){echo $_SESSION['current_notes'];} ?></textarea>
           <button id="saveNotesBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" name="submit" style="visibility:hidden;">Save Notes</button>
         </form>
 

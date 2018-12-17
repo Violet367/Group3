@@ -64,7 +64,11 @@ sudo git pull
 <img src="https://github.com/Violet367/Group3/blob/master/group_proj/db.png?raw=true"/>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 Show in the figure above is the database structure of StudyBuddy. The accounts tables stores the username and password of the unique accounts made on the sign-up page. Then retrieved during login-in for password verification. The ToDo and Notes table is dependent on the Accounts tables by the foreign key( user_id ) and saved at log-out. The notes table stores the name and contents on the note to its respective user account. The ToDo table saves the name of the task the user creates. Both the Note and ToDo tables contents are retrieved at log-in to restore the users last setting.
+=======
+Show in the figure above is the database structure of StudyBuddy. The accounts tables stores the username and password of the accounts made on the sign-up page. Then retrieved during log-in for password verification. The ToDo and Notes table is dependant on the Accounts tables by the foreign key( user_id ) and saved at log-out. The notes table stores the name and contents of the note to its respective user account. The ToDo table saves the name of the task the user creates. Both the Note and ToDo tables contents are retrieved at log-in to restore the users last setting. See the figure above for the datatypes of each column. 
+>>>>>>> c5cbd456796b0dcfe676239b28acdc9ab9f950a5
 =======
 Show in the figure above is the database structure of StudyBuddy. The accounts tables stores the username and password of the accounts made on the sign-up page. Then retrieved during log-in for password verification. The ToDo and Notes table is dependant on the Accounts tables by the foreign key( user_id ) and saved at log-out. The notes table stores the name and contents of the note to its respective user account. The ToDo table saves the name of the task the user creates. Both the Note and ToDo tables contents are retrieved at log-in to restore the users last setting. See the figure above for the datatypes of each column. 
 >>>>>>> c5cbd456796b0dcfe676239b28acdc9ab9f950a5

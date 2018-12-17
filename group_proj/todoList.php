@@ -1,11 +1,16 @@
 <?php
+  include 'config.php';
+  include 'helpers.php';
   $errors = "";
-  $user_id = get_user_id_from_email($conn);
+  $user_id = $_SESSION['user_id'];
 
+  // add task
   if (isset($_POST['submit'])){
     $task = $_POST['task'];
     if (empty($task)) {
-      $errors = "You must fill in the task";
+      $errors = "You must enter a task for your todo list!";
+      $_SESSION['errors'] = $errors;
+      echo $errors;
     } else {
       $sql = "INSERT INTO ToDo (name, user_id_fk) VALUES ('$task', '$user_id')";
       if (mysqli_query($conn, $sql)){
@@ -13,9 +18,8 @@
       } else{
           echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
       }
-
-      header('location: studybuddy.php');
     }
+    header('location: studybuddy.php');
   }
 
   //$_SESSION['completed_tasks'] = array();

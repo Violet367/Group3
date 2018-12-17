@@ -1,71 +1,8 @@
-// Implement Close button
-document.getElementById("defaultOpen").click();
-var myNodelist = $("button.tablink");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
-}
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
-
-// notes
-function openNote(noteName,elmnt,color) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].style.backgroundColor = "";
-    }
-    document.getElementById(noteName).style.display = "block";
-    elmnt.style.backgroundColor = color;
-}
-
-// Create a new tab when clicking on the "Add" button
-function newTabElement() {
-  var button = document.createElement("button");
-  var inputValue = document.getElementById("theInput").value;
-  var t = document.createTextNode(inputValue);
-  button.appendChild(t);
-  if (inputValue === "") {
-    alert("You must write something!");
-  } else {
-    document.getElementById("myTabs").appendChild(button);
-  }
-  document.getElementById("theInput").value = "";
-
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  button.appendChild(span);
-
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
-}
-
 // timerSetup ----------------------------------------
-
 var templateStr = '\n\t<form>'+
                   '\n\t\t<label id="minLabel" for="min">'+
                            '<span>Minutes</span><br />'+
-                  '\n\t\t  <input type="number" v-model="minutes" name="time_m" id="min" min="0" max="59" value="15">'+
+                  '\n\t\t  <input type="number" v-model="minutes" name="time_m" id="min" min="0" max="59">'+
                   '\n\t\t</label>'+
                   '\n\t\t<label id="secLabel" for="sec">'+
                            '<span>Seconds</span><br />'+
@@ -77,7 +14,7 @@ var timerSetup = {
   template: templateStr,
   data: function data() {
     return {
-      minutes: 15,
+      minutes: 25,
       secondes: 0
     };
   },

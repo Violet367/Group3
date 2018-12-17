@@ -1,7 +1,5 @@
 <?php
    include 'config.php'; /* Connects to the database */
-   include 'helpers.php';
-   session_start();
 
    if (isset($_SESSION['login_user'])){
      header("location: studybuddy.php");
@@ -40,6 +38,7 @@
     <meta charset="utf-8">
     <title>Study Buddy</title>
     <link href="frontPage.css" type="text/css" rel="stylesheet"/>
+    <link href="snackbar.css" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-red.min.css" />
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"

@@ -1,4 +1,4 @@
-# StudyBuddy
+# Study Buddy
 ****
 
 ### Project team member contact information:

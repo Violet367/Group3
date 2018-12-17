@@ -11,28 +11,29 @@ The page users are directed to after signing up or logging in to our interface i
 In our repository, there is also a folder call docs, which contains our documents that explain our project and what it is about. In this folder there are the README.md, developer_manual.md (which you are reading), and user_manual.md files.
 
 ### Software/Libraries
+Include the following technologies 
 
 #### Vue.js  
 
 ````
-<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script>
+https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js
 ````
 
 #### Design Lite
 
 ````
-https://code.getmdl.io/1.3.0/material.grey-red.min.css"
+https://code.getmdl.io/1.3.0/material.grey-red.min.css
 ````
 
 #### AJAX
 
 ````
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css
 ````
 #### jQuery
 
 ````
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
+https://code.jquery.com/jquery-3.3.1.min.js
 ````
 
 ### System Environment
@@ -57,6 +58,7 @@ Sudo git pull
 ````
 
 ### Database Structure
+(group_proj/db.png)
 
 Show in the figure above is the database structure of StudyBuddy. The accounts tables stores the username and password of the unique accounts made on the sign-up page. Then retrieved during login-in for password verification. The ToDo and Notes table is dependant on the Accounts tables by the foreign key( user_id ) and saved at log-out. The notes table stores the name and contents on the note to its respective user account. The ToDo table saves the name of the task the user creates. Both the Note and ToDo tables contents are retrieved at log-in to restore the users last setting.
 

@@ -1,7 +1,7 @@
 # StudyBuddy
 ****
 ## Developer’s Manual
-****
+----
 Team members: Violet Gooding (team lead), Kanika Taneja, Lina Abdo, Yasmin Ibrahim
 
 ### File Structure

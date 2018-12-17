@@ -14,4 +14,7 @@ if ($conn->connect_error) {
 }
 
 /*echo "Connected successfully";*/
+if(session_id() == '' || !isset($_SESSION)) {
+  session_start(); // start sessions if it hasn't been started
+}
 ?>
